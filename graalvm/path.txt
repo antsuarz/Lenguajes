@@ -1,0 +1,4 @@
+set JAVA_HOME=C:\Users\Antonio\.jdks\openjdk-21.0.2
+set PATH=%JAVA_HOME%\bin;%PATH%
+
+java --module-path target/modules --add-modules=org.graalvm.polyglot -cp target/graalvm-1.0-SNAPSHOT.jar com.example.App "5000000"
