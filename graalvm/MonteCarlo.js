@@ -1,10 +1,17 @@
 const SEED = 113;
 
+
+function pseudoRandom(seed) { 
+    let state = seed;
+    return function () {
+        state = (state * 1664525 + 1013904223) % 4294967296;
+        return state / 4294967296;
+    };
+}
+
 function integrate(numSamples) {
     let underCurve = 0;
-
-    // Crear una función para generar números pseudoaleatorios con la semilla
-    let random = new Math.seedrandom(SEED);
+    let random = pseudoRandom(SEED);
 
     for (let count = 0; count < numSamples; count++) {
         let x = random();
@@ -14,6 +21,6 @@ function integrate(numSamples) {
             underCurve++;
         }
     }
-
     return (underCurve / numSamples) * 4.0;
 }
+ 
