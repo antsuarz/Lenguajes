@@ -31,7 +31,7 @@ def startup(command, confidence_level, p_iterations, break_if_error_percentage_i
     execution_times = []
     for i in range(1, p_iterations+1):
         before = time.time()
-        os.system(command)
+        os.system(command) 
         after = time.time()
         execution_time = (after-before)*1000
         print("Iteration %s. Times in millis %s." % (i, execution_time))

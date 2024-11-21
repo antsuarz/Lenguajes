@@ -1,8 +1,8 @@
-load('montecarlo.js'); 
+const { pybench } = require('./pybench-v8.js');  
 
 function main(...args) {
     if (args.length === 0) { 
-        integrate(50000000);
+        pybench(); 
         return;
     }
 
@@ -10,14 +10,15 @@ function main(...args) {
         console.error("Se necesitan los argumentos: 1) Número máximo de iteraciones, 2) k, 3) CoV.");
         process.exit(-1);
     }
- 
+
     const maxNumberIterations = parseInt(args[0], 10);
     const k = parseInt(args[1], 10); 
     const CoV = parseFloat(args[2]);  
     const executionTimes = [];
+    
     for (let i = 1; i <= maxNumberIterations; i++) {
         const before = Date.now(); 
-        integrate(50000000);
+        pybench(); 
         const after = Date.now();
         const time = after - before;
 
@@ -31,7 +32,7 @@ function main(...args) {
     console.log(result)
 }
 
-main(...arguments);
+main(...process.argv.slice(2));
 
 function areWeDone(executionTimes, k, CoV) {
     const n = Math.min(executionTimes.length, k);
@@ -45,7 +46,7 @@ function areWeDone(executionTimes, k, CoV) {
     }
 
     const stdDeviation = Math.sqrt(summation / n);
-    console.log(stdDeviation/mean < CoV)
+    console.log(`Desviación estándar: ${stdDeviation}, CoV: ${stdDeviation / mean}`);
     return stdDeviation / mean < CoV;
 }
 

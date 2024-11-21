@@ -1,8 +1,8 @@
-load('montecarlo.js'); 
+load('pybench.js');
 
 function main(...args) {
     if (args.length === 0) { 
-        integrate(50000000);
+        pybench();
         return;
     }
 
@@ -17,7 +17,7 @@ function main(...args) {
     const executionTimes = [];
     for (let i = 1; i <= maxNumberIterations; i++) {
         const before = Date.now(); 
-        integrate(50000000);
+        pybench();
         const after = Date.now();
         const time = after - before;
 

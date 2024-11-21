@@ -1,4 +1,4 @@
-load('montecarlo.js'); 
+const { integrate } = require('./montecarlo-v8.js');  
 
 function main(...args) {
     if (args.length === 0) { 

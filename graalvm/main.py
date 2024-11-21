@@ -14,12 +14,12 @@ def show(interval, mean, sdev, error_percentage):
 if __name__ == "__main__":
     # Parameters
     print("------STARTUP------")
-    interval, mean, sdev, error_percentage = bench.startup("js graal-montecarlo.js", 0.95, 10, 0)
+    interval, mean, sdev, error_percentage = bench.startup("node graal-pybench-v8.js", 0.95, 10, 0)
     print("Results Startup:")
     show(interval, mean, sdev, error_percentage)
 
     print("------STEADY-STATE------")
-    interval, mean, sdev, error_percentage = bench.steady("js graal-montecarlo.js -- ", 0.95, 10, 0, 30, 10, 0.02)
+    interval, mean, sdev, error_percentage = bench.steady("node graal-pybench-v8.js ", 0.95, 10, 0, 30, 10, 0.02)
     print("Results Steady-state:")
     show(interval, mean, sdev, error_percentage)
 
