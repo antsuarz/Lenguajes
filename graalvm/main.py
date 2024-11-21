@@ -19,7 +19,7 @@ if __name__ == "__main__":
     show(interval, mean, sdev, error_percentage)
 
     print("------STEADY-STATE------")
-    interval, mean, sdev, error_percentage = bench.steady("js graal-montecarlo.js --", 0.95, 10, 0, 30, 10, 0.02)
+    interval, mean, sdev, error_percentage = bench.steady("js graal-montecarlo.js -- ", 0.95, 10, 0, 30, 10, 0.02)
     print("Results Steady-state:")
     show(interval, mean, sdev, error_percentage)
 

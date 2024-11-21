@@ -43,11 +43,12 @@ def startup(command, confidence_level, p_iterations, break_if_error_percentage_i
 
 def steady(command, confidence_level, p_iterations, break_if_error_percentage_is, max_bench_invocations, k, CoV):
     command += " " + str(max_bench_invocations) + " " + str(k) + " " + str(CoV)
+    print(command)
     execution_times = []
     for i in range(1, p_iterations+1):
         process = Popen(args=command, stdout=PIPE, shell=True)
         process_std_output = process.communicate()[0]
-        execution_time = int(process_std_output.splitlines()[-1])
+        execution_time = float(process_std_output.splitlines()[-1])
         print("Iteration %s. Times in millis %s." % (i, execution_time))
         execution_times.append(execution_time)
         interval, mean, sdev, error_percentage = confidence(execution_times, confidence_level)

@@ -11,13 +11,10 @@ function main(...args) {
         console.error("Se necesitan los argumentos: 1) Número máximo de iteraciones, 2) k, 3) CoV.");
         process.exit(-1);
     }
-
-    console.log(args)
+ 
     const maxNumberIterations = parseInt(args[0], 10);
     const k = parseInt(args[1], 10); 
-    const CoV = parseFloat(args[2]); 
-    console.log("k valor:",k)
-    console.log("CoV. ", CoV)
+    const CoV = parseFloat(args[2]);  
     const executionTimes = [];
     for (let i = 1; i <= maxNumberIterations; i++) {
         const before = Date.now(); 
@@ -25,15 +22,17 @@ function main(...args) {
         const after = Date.now();
         const time = after - before;
 
-        console.log(`Iteración ${i}, tiempo: ${time} ms`);
+        console.log(`Iteracion ${i}, tiempo: ${time} ms`);
         executionTimes.push(time);
 
         if (areWeDone(executionTimes, k, CoV)) break;
     }
 
     const result = getMean(executionTimes, k);
-    console.log("Tiempo promedio de las últimas iteraciones:", result, "ms");
+    console.log(result)
 }
+
+main(...arguments);
 
 function areWeDone(executionTimes, k, CoV) {
     const n = Math.min(executionTimes.length, k);
@@ -47,6 +46,7 @@ function areWeDone(executionTimes, k, CoV) {
     }
 
     const stdDeviation = Math.sqrt(summation / n);
+    console.log(stdDeviation/mean < CoV)
     return stdDeviation / mean < CoV;
 }
 
@@ -60,5 +60,3 @@ function getMean(executionTimes, k) {
 
     return summation / n;
 }
-
-main(...arguments);
