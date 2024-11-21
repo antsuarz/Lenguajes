@@ -20,8 +20,7 @@ function integrate(numSamples) {
         if (x * x + y * y <= 1.0) {
             underCurve++;
         }
-    }
-    console.log(underCurve / numSamples) * 4.0;
+    } 
     return (underCurve / numSamples) * 4.0;
     
 }
